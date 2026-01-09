@@ -132,3 +132,15 @@ from sklearn.metrics import accuracy_score
 acc_score = accuracy_score(y_test_reg, logistic_regressor_predict)
 print(acc_score)
 
+print("Logistic Regression classifier:\n", classification_report(y_test_reg, logistic_regressor_predict))
+report_lr = classification_report(y_test_reg, logistic_regressor_predict, output_dict=True)
+report_lr_df = pd.DataFrame(report_lr).transpose()
+# Plot classification report heatmap for Logistic Regression
+plt.figure(figsize=(8, 5))
+sns.heatmap(report_lr_df.iloc[:-1, :-1], annot=True, cmap='YlGnBu', fmt=".2f")
+plt.title("Classification Report - Logistic Regression")
+plt.xlabel("Metrics")
+plt.ylabel("Classes")
+plt.show()
+
+
